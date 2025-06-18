@@ -7,6 +7,7 @@ Play Audio/song from youtube directly in terminal. No browser/app needed.
 clone this repo:
 
         git clone https://github.com/kailasnv/yt-terminal.git
+        cd yt-terminal
 
 basic usage:
 
@@ -19,6 +20,6 @@ basic usage:
         yt-dlp
         mpv
 
-✅ On Arch Linux (using pacman):
+✅ on Archlinux (using pacman):
 
         sudo pacman -S yt-dlp mpv
