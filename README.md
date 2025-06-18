@@ -1,4 +1,4 @@
-## play song from youtube directly in terminal
+play song from youtube directly in terminal
 
-yt-dlp
-mpv
+        yt-dlp
+        mpv
