@@ -1,6 +1,7 @@
 
 import subprocess
 import sys
+import shutil
 
 
 
@@ -15,9 +16,13 @@ class Colors:
     PURPLE = '\033[95m'
     CYAN = '\033[96m'
     RESET = '\033[0m'
+
+class Styles:
+    italic = '\033[3m'
+    normal = '\033[0m'
     
 # search for a song using yt-dlp
-def search_for_songs(query):
+def search_for_songs(query, terminal_width):
     try:      
         result = subprocess.run(["yt-dlp", f"ytsearch1:{query}","-f", "bestaudio", "--get-url"],
         stdout=subprocess.PIPE, # out
@@ -25,7 +30,8 @@ def search_for_songs(query):
         stderr=subprocess.PIPE #error
         )
         if (result.returncode == 0):
-            print(f"{Colors.GREEN}search success{Colors.GREEN}")
+            text = "search success"
+            print(f"{Colors.GREEN}{Styles.italic}{text.center(terminal_width)}{Styles.italic}{Colors.GREEN}")
         else:
             print(f"{Colors.RED}nothing found! search again.{Colors.RED}")
              
@@ -36,6 +42,8 @@ def search_for_songs(query):
         print("please install yt-dlp in your system.")
         # TODO: auto install yt-dlp
         sys.exit(1)
+    except Exception:
+        print(f"{Colors.RED}{result.stderr}{Colors.RED}")
  
 
 
@@ -69,15 +77,21 @@ def main():
      """ + Colors.BLUE)
 
 
-    if len(sys.argv) < 2:
-        print(f"{Colors.YELLOW}usage: python yt-terminal.py <search-term>{Colors.YELLOW}")
-        sys.exit(1)
-    #print(sys.argv[1:]) if there is a search term
-    query = "".join(sys.argv[1:])
-    print(f"Searching for: {query}")
-    url = search_for_songs(query)
-    # print(url)
-    play_song(url)
+    # if len(sys.argv) < 2:
+    #     print(f"{Colors.YELLOW}usage: python yt-terminal.py <search-term>{Colors.YELLOW}")
+    #     sys.exit(1)
+    # #print(sys.argv[1:]) if there is a search term get it
+ 
+ 
+
+    terminal_width = shutil.get_terminal_size().columns
+    while (True):
+        # comment:
+        query = input(f"{Colors.CYAN}search any song: ") 
+        print(f"{Colors.CYAN}searching for:{Colors.BLUE} {query} .....")
+        url = search_for_songs(query, terminal_width)
+        play_song(url)
+    # end while
 
 
 
