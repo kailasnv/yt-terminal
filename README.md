@@ -1,11 +1,12 @@
-### yt-terminal - lightweight musicplayer
+### yt-terminal
 
 Play Audio/song from youtube directly in terminal. No browser/app needed.
 
 #### install & usage
 
 clone this repo:
-git clone https://github.com/kailasnv/yt-terminal.git
+
+        git clone https://github.com/kailasnv/yt-terminal.git
 
 basic usage:
 
