@@ -24,7 +24,7 @@ class Styles:
 # search for a song using yt-dlp
 def search_for_songs(query, terminal_width):
     try:      
-        result = subprocess.run(["yt-dlp", f"ytsearch1:{query}","-f", "bestaudio", "--get-url"],
+        result = subprocess.run(["yt-dlp", f"ytsearch1:{query} song","-f", "bestaudio", "--get-url"],
         stdout=subprocess.PIPE, # out
         text=True ,
         stderr=subprocess.PIPE #error
@@ -77,18 +77,18 @@ def main():
      """ + Colors.BLUE)
 
 
-    # if len(sys.argv) < 2:
-    #     print(f"{Colors.YELLOW}usage: python yt-terminal.py <search-term>{Colors.YELLOW}")
-    #     sys.exit(1)
-    # #print(sys.argv[1:]) if there is a search term get it
- 
- 
-
     terminal_width = shutil.get_terminal_size().columns
     while (True):
-        # comment:
-        query = input(f"{Colors.CYAN}search any song: ") 
+        #user input:
+        query = input(f"{Colors.CYAN}search any song: ")
+        if (query == ""):
+            continue
+        # if there is a input
+        sys.stdout.write("\033[F")  #move cursor up one line
+        sys.stdout.flush()
         print(f"{Colors.CYAN}searching for:{Colors.BLUE} {query} .....")
+        
+        
         url = search_for_songs(query, terminal_width)
         play_song(url)
     # end while
@@ -96,4 +96,8 @@ def main():
 
 
 if __name__ == "__main__":
-    main();
+    try:
+        main()
+    except KeyboardInterrupt:
+        print(f"{Colors.YELLOW}Exiting yt-terminal, bye bye...{Colors.YELLOW}")
+        sys.exit(0)
