@@ -33,7 +33,7 @@ def search_for_songs(query, terminal_width):
         if (result.returncode == 0):
             text = "- search success -"
             print(f"{Colors.GREEN}{Styles.italic}{text.center(terminal_width)}{Styles.italic}{Colors.GREEN}")
-            print(f"{Colors.CYAN}{Styles.italic}{"press enter to stop song/search new song".center(terminal_width)}{Styles.italic}{Colors.CYAN}")
+            print(f"{Colors.CYAN}{Styles.italic}{"press 'enter' to quit-song/search-new-song".center(terminal_width)}{Styles.italic}{Colors.CYAN}")
         else:
             print(f"{Colors.RED}nothing found! search again.{Colors.RED}")
              
