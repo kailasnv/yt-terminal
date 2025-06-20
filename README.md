@@ -1,6 +1,6 @@
 ### yt-terminal
 
-Play Audio/song from youtube directly in terminal. No browser/app needed.
+Just playing Audio/song from youtube directly in terminal. No browser/app & no authentication needed.
 
 #### install & usage
 
