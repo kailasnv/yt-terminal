@@ -5,9 +5,6 @@ import shutil
 import threading
 
 
-
- 
-
 #colors # Use colorama (for better Windows support)
 class Colors:
     BLUE = '\033[94m'
@@ -21,23 +18,38 @@ class Colors:
 class Styles:
     italic = '\033[3m'
     normal = '\033[0m'
+
+#move up a line and clean that line
+# def moveup_and_clean_line(times, terminal_width):
+#     for i in range(times):  
+#         sys.stdout.write('\r' + ' ' * terminal_width + '\r')
+#         sys.stdout.write('\033[F')
+#         sys.stdout.write('\r' + ' ' * terminal_width + '\r')
+
+#     # end if
+
     
 # search for a song using yt-dlp
 def search_for_songs(query, terminal_width):
     try:      
-        result = subprocess.run(["yt-dlp", f"ytsearch1:{query} song","-f", "bestaudio", "--get-url"],
+        result = subprocess.run(["yt-dlp", f"ytsearch1:{query} song","-f", "bestaudio", "--get-url", "--get-title"],
         stdout=subprocess.PIPE, # out
         text=True ,
         stderr=subprocess.PIPE #error
         )
+        data = result.stdout.strip().splitlines()
+        url = data[1]
+        song_title = data[0]
+
         if (result.returncode == 0):
-            text = "- search success -"
-            print(f"{Colors.GREEN}{Styles.italic}{text.center(terminal_width)}{Styles.italic}{Colors.GREEN}")
-            print(f"{Colors.CYAN}{Styles.italic}{"press 'enter' to quit-song/search-new-song".center(terminal_width)}{Styles.italic}{Colors.CYAN}")
+            sys.stdout.write('\033[F') # cursor moves up
+        
+            print(f"{Colors.CYAN}{Styles.normal}playing: {Colors.BLUE}{Styles.italic}{song_title}")
+            print(f"{Colors.CYAN}{Styles.italic}{"press 'enter' to quit-song/search-new-song".center(terminal_width)}")
         else:
             print(f"{Colors.RED}nothing found! search again.{Colors.RED}")
-             
-        return result.stdout.strip()
+ 
+        return url 
     
     except FileNotFoundError as e:
         print(f"{e}")
@@ -48,14 +60,6 @@ def search_for_songs(query, terminal_width):
         print(f"{Colors.RED}{result.stderr}{Colors.RED}")
  
 
-#clean a line
-def moveup_and_clean_line(moveup, terminal_width):
-    for i in range(moveup):  
-        sys.stdout.write('\r' + ' ' * terminal_width + '\r')
-        sys.stdout.write('\033[F')
-        sys.stdout.write('\r' + ' ' * terminal_width + '\r')
-
-    # end if
 
 # play song using mpv
 def play_song(url, terminal_width):
@@ -75,6 +79,7 @@ def play_song(url, terminal_width):
         input_thread = threading.Thread(target=listen_for_enterkey(), daemon=True)
         input_thread.start()
         process.wait()
+         
     except FileNotFoundError as e:
         print(f"{e}")
         print("please install mpv in your system.")
