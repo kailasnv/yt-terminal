@@ -5,7 +5,7 @@
 
     mkdir ~/music-server
     cd ~/music-server
-    mkdir templates
+    mkdir templates 
 ---
 
 ## 🐍 2. Install Dependencies
@@ -28,6 +28,7 @@ cd ~/music-server
 python app.py
 
 Access locally on : http://localhost:5000
+
 ---
 
 ## 🌐 4. Access from Same WiFi
