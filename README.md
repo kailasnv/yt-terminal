@@ -61,7 +61,7 @@ Install tailscale mobile app on your smartphone (it act as a vpn tunnel) and log
 Create the directory and service file:
 
         mkdir -p ~/.config/systemd/user
-        nano ~/.config/systemd/user/music-server.service
+        nano ~/.config/systemd/user/klyro.service
 
 Paste this and save:
 
@@ -70,8 +70,8 @@ Paste this and save:
         After=network.target
 
         [Service]
-        ExecStart=/usr/bin/python /home/YOUR_USERNAME/music-server/app.py
-        WorkingDirectory=/home/YOUR_USERNAME/music-server
+        ExecStart=/usr/bin/python /home/YOUR_USERNAME/Klyro/app.py
+        WorkingDirectory=/home/YOUR_USERNAME/Klyro
         Restart=always
 
         [Install]
@@ -83,8 +83,8 @@ Paste this and save:
 
     systemctl --user daemon-reexec
     systemctl --user daemon-reload
-    systemctl --user enable music-server
-    systemctl --user start music-server
+    systemctl --user enable klyro
+    systemctl --user start klyro
 
 ---
 
@@ -95,18 +95,18 @@ Paste this and save:
 
 ### Check Service Status
 
-    systemctl --user status music-server
+    systemctl --user status klyro
 ---
 
 ### Stop / Restart Service
 
-    systemctl --user stop music-server
-    systemctl --user restart music-server
+    systemctl --user stop klyro
+    systemctl --user restart klyro
 ---
 
 ### View Logs
 
-    journalctl --user -u music-server -f
+    journalctl --user -u klyro -f
 ---
 
 ### Result
