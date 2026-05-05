@@ -1,11 +1,9 @@
 ## Personal Music Streaming Server (Arch Linux)
 
 
-### Project Setup
+### Create a Music directory to store all songs
 
-    mkdir ~/music-server
-    cd ~/music-server
-    mkdir templates 
+    mkdir ~/Music
 ---
 
 ### Install Dependencies
