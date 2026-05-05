@@ -1,11 +1,16 @@
 ## Personal Music Streaming Server (Arch Linux)
 
-
-### Create a Music directory to store all songs
+   
+### Create a Music directory to store all your songs
 
     mkdir ~/Music
 ---
 
+### Project setup
+
+    git clone https://github.com/kailasnv/Klyro.git
+    cd Klyro/
+ 
 ### Install Dependencies
 
     sudo pacman -S python python-pip yt-dlp
