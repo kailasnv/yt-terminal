@@ -40,7 +40,7 @@ Then open in browser:
 
 ### Remote Access using Tailscale
 
-Install tailscale:
+Install tailscale, and login with ur email when it prompts:
 
     sudo pacman -S tailscale
     sudo systemctl enable --now tailscaled
