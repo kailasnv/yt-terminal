@@ -58,6 +58,8 @@ Install tailscale mobile app on your smartphone (it act as a vpn tunnel) and log
     
     http://<tailscale-ip>:5000
 
+Also you can Manage the devices connected to your tailnet from https://login.tailscale.com/admin/machines
+
 ---
 
 ### Create systemd User Service
