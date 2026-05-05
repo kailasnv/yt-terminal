@@ -1,45 +1,41 @@
-# 🎵 Personal Music Streaming Server (Arch Linux) — Notes
+## Personal Music Streaming Server (Arch Linux)
 
 
-## 📁 1. Project Setup
+### Project Setup
 
     mkdir ~/music-server
     cd ~/music-server
     mkdir templates 
 ---
 
-## 🐍 2. Install Dependencies
+### Install Dependencies
 
-    sudo pacman -S python python-pip
+    sudo pacman -S python python-pip yt-dlp
+    pip install flask 
+---
 
-### (Optional but recommended: virtual environment)
+
+### Run Server Manually
 
     cd ~/music-server
-    python -m venv venv
-    source venv/bin/activate
-    pip install flask
+    python app.py
+
+Access locally on:
+    
+    http://localhost:5000
 ---
 
+### Access from Same WiFi
 
-## ▶️ 3. Run Server Manually
-
-
-cd ~/music-server
-python app.py
-
-Access locally on : http://localhost:5000
----
-
-## 🌐 4. Access from Same WiFi
-
-Find IP using: ip a
+Find IP using this command: 
+        ip a
 
 Then open in browser: 
         
         http://<your-ip>:5000
 ---
 
-## 🌍 5. Remote Access using Tailscale
+### Remote Access using Tailscale
 
 Install tailscale:
 
@@ -48,21 +44,22 @@ Install tailscale:
     sudo tailscale up
 
 Get IP: 
+
     tailscale ip -4
 
 Access from anywhere: 
+
     http://<tailscale-ip>:5000
 ---
 
-## ⚙️ 6. Create systemd User Service
+### Create systemd User Service
 
-Create directory: 
+Create the directory and service file:
+
         mkdir -p ~/.config/systemd/user
-
-Create service file: 
         nano ~/.config/systemd/user/music-server.service
 
-Paste this:
+Paste this and save:
 
         [Unit]
         Description=Music Streaming Server
@@ -78,7 +75,7 @@ Paste this:
 
 ---
 
-## 🔄 7. Enable and Start Service
+### Enable and Start Service
 
     systemctl --user daemon-reexec
     systemctl --user daemon-reload
@@ -87,29 +84,28 @@ Paste this:
 
 ---
 
-## 🔓 8. Enable Run at Boot (Important)
-
+### Enable Run at Boot (Important)
 
     loginctl enable-linger $USER
 ---
 
-## 📊 9. Check Service Status
+### Check Service Status
 
     systemctl --user status music-server
 ---
 
-## 🛑 10. Stop / Restart Service
+### Stop / Restart Service
 
     systemctl --user stop music-server
     systemctl --user restart music-server
 ---
 
-## 📜 11. View Logs
+### View Logs
 
     journalctl --user -u music-server -f
 ---
 
-# ✅ Result
+### Result
 
 * Music server runs automatically
 * Streams from ~/Music
