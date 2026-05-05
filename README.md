@@ -49,6 +49,8 @@ Get IP:
 Access from anywhere: 
 
     http://<tailscale-ip>:5000
+
+Install tailscale mobile app on your smartphone and login with the same email you had given while doing the tailscale setup in your pc (server). And connect and browse to the http://<tailscale-ip>:5000 address.
 ---
 
 ### Create systemd User Service
