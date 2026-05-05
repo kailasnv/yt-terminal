@@ -15,7 +15,7 @@
 
 ### Run Server Manually
 
-    cd ~/music-server
+    cd ~/Klyro
     python app.py
 
 Access locally on:
@@ -26,6 +26,7 @@ Access locally on:
 ### Access from Same WiFi
 
 Find IP using this command: 
+
         ip a
 
 Then open in browser: 
