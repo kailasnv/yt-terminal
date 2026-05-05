@@ -67,15 +67,15 @@ Create the directory and service file:
         mkdir -p ~/.config/systemd/user
         nano ~/.config/systemd/user/klyro.service
 
-Paste this and save:
+Paste this and save (add exact path to the app.py):
 
         [Unit]
         Description=Music Streaming Server
         After=network.target
 
         [Service]
-        ExecStart=/usr/bin/python /home/YOUR_USERNAME/Klyro/app.py
-        WorkingDirectory=/home/YOUR_USERNAME/Klyro
+        ExecStart=/usr/bin/python /add-path-here/Klyro/app.py
+        WorkingDirectory=/add-path-here/Klyro
         Restart=always
 
         [Install]
