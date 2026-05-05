@@ -28,7 +28,6 @@ cd ~/music-server
 python app.py
 
 Access locally on : http://localhost:5000
-
 ---
 
 ## 🌐 4. Access from Same WiFi
