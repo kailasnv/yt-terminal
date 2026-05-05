@@ -20,7 +20,6 @@
 
 ### Run Server Manually
 
-    cd ~/Klyro
     python app.py
 
 Access locally on:
